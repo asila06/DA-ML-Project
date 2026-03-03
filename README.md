@@ -1,4 +1,4 @@
-### Project Plan : Data Analytics-Machine Learning ###<<
+### Project Plan : Data Analytics-Machine Learning 
 # 1. Course Name : Data Analytics & Machine Learning
 # 2. Team Information
 - Team Name: chenada

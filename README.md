@@ -1,6 +1,6 @@
 ### Project Plan : Data Analytics-Machine Learning ###<<
-#1. Course Name : Data Analytics & Machine Learning
-#2. Team Information
+# 1. Course Name : Data Analytics & Machine Learning
+# 2. Team Information
 - Team Name: chenada
 | Name    | Student ID | Group | Role            | Phone Number      |
 | ------- | ---------- | ----- | --------------- | ----------------- |
@@ -8,12 +8,12 @@
 | Avazbekov Abduraxmonbek | 202490056 | I24B  | Project Manager | --
 | Shamsutdinov Doniyorbek | 202490285 | I24A  | Coder | -- 
 | Isayev Yorkinjon | 202490139 | I24B  | Ideator | --
-#3. Project Title : Trends in Reading: Paper vs Digital Books
+# 3. Project Title : Trends in Reading: Paper vs Digital Books
 - This project analyzes how reading habits have changed over time, focusing on the comparison between paper books and digital books.
 - It uses data analysis techniques in Python (Pandas) to identify trends, age group preferences, and correlations between traditional and digital reading formats.
 - The goal is to generate insights and future predictions that can help publishers, libraries, and digital platforms make data-driven decisions.
 
-#4. Dataset Information
+# 4. Dataset Information
 - Dataset Title: American Trends Panel Wave 116 – Book Reading and Format Preferences
 - Source Organization: Pew Research Center
 - Official Dataset Link:
@@ -24,7 +24,7 @@ https://www.pewresearch.org/dataset/american-trends-panel-wave-116/
 - This dataset directly supports the research objective of analyzing trends in reading habits and comparing paper books with digital formats. It provides real-world survey data that allows meaningful statistical analysis and trend evaluation.
 - Dataset Size: Approximately 10,000+ survey responses with multiple demographic and behavioral variables (exact number depends on version downloaded).
 
-#5. Project Objectives
+# 5. Project Objectives
 Problem Statement:
 - Identify how reading habits are changing—paper books vs digital versions.
 Key Questions:
@@ -36,36 +36,36 @@ Expected Insights:
 - Age-based preferences
 - Forecast for future reading behavior
 
-#6. Data Preparation
+# 6. Data Preparation
 Step 1: Import Libraries
-# Import required libraries
+#Import required libraries
 import pandas as pd
 import numpy as np
 Step 2: Load the Dataset
-# Load dataset 
+#Load dataset 
 df = pd.read_csv("ATP_W116_reading_data.csv")
 
-# Display first 5 rows
+#Display first 5 rows
 df.head()
 Step 3: Explore the Dataset
-# Check structure
+#Check structure
 df.info()
 
-# Check missing values
+#Check missing values
 df.isnull().sum()
 
-# Summary statistics
+#Summary statistics
 df.describe(include='all')
 Step 4: Data Cleaning
-# Remove duplicates
+#Remove duplicates
 df = df.drop_duplicates()
 
-# Fill missing values with 0 (for reading format columns)
+#Fill missing values with 0 (for reading format columns)
 df['BOOKPRINT'] = df['BOOKPRINT'].fillna(0)
 df['BOOKEBOOK'] = df['BOOKEBOOK'].fillna(0)
 df['BOOKAUDIO'] = df['BOOKAUDIO'].fillna(0)
 
-# Convert reading columns to numeric if needed
+#Convert reading columns to numeric if needed
 df['BOOKPRINT'] = pd.to_numeric(df['BOOKPRINT'], errors='coerce')
 df['BOOKEBOOK'] = pd.to_numeric(df['BOOKEBOOK'], errors='coerce')
 df['BOOKAUDIO'] = pd.to_numeric(df['BOOKAUDIO'], errors='coerce')
@@ -73,19 +73,19 @@ Step 5: Feature Creation
 
 Create a new column to classify readers:
 
-# Create new column: Digital Reader (1 if uses ebook or audiobook)
+#Create new column: Digital Reader (1 if uses ebook or audiobook)
 df['DIGITAL_READER'] = np.where(
     (df['BOOKEBOOK'] == 1) | (df['BOOKAUDIO'] == 1),
     1,
     0
 )
 
-# Create Print Reader column
+#Create Print Reader column
 df['PRINT_READER'] = np.where(df['BOOKPRINT'] == 1, 1, 0)
 
 df.head()
 
-#7. Data Analysis Tasks (Using Pandas)
+# 7. Data Analysis Tasks (Using Pandas)
 - 1. How many people read print vs digital books?
 print_readers = df['PRINT_READER'].sum()
 digital_readers = df['DIGITAL_READER'].sum()
@@ -127,7 +127,7 @@ correlation
 If correlation is negative → digital growth may reduce print usage.
 If positive → many people use both formats.
 
-#8. Key Findings and Insights
+# 8. Key Findings and Insights
 After analyzing the dataset using Pandas, several important observations were identified.
 
 - General Reading Preferences
@@ -164,7 +164,7 @@ Libraries and educational institutions should invest in both physical and digita
 The main insight of this project is that reading habits are changing, but print books are not disappearing. Instead, digital reading is becoming an additional format that complements traditional books.
 The reading industry is moving toward a mixed model where both paper and digital formats coexist.
 
-#9. Project Timeline (5 Weeks)
+# 9. Project Timeline (5 Weeks)
 
 | Week                     |        Activities                   |
 |------------------------  |-------------------------------------|
@@ -174,19 +174,19 @@ The reading industry is moving toward a mixed model where both paper and digital
 | Week 5(06.March ~ 13.March)  | Report writing and presentation preparation |
 Presentation: 16.March
 
-#10. Outcome of the Project
+# 10. Outcome of the Project
 - Learned to load, clean, and analyze datasets using Pandas
 - Developed skills in grouping, pivot tables, filtering, and visualization
 - Applied basic trend analysis and ML forecasting
 
-#11. Conclusion
+# 11. Conclusion
 - The project demonstrates how data analysis helps understand changing reading habits, providing actionable insights for publishers, libraries, and digital platforms.
 
-#12. References
+# 12. References
 - Rew Research Center – Book Reading 2016 Report (https://www.pewresearch.org/internet/2016/09/01/book-reading-2016)
 - Pandas documentation – https://pandas.pydata.org/docs/
 - Matplotlib documentation – https://matplotlib.org/stable/tutorials/introductory/pyplot.html
 
-#13. Appendix
+# 13. Appendix
 - Code snippets (see above)
 - Charts for trends by year and age group

@@ -39,63 +39,106 @@ Expected Insights:
 - Age-based preferences
 - Forecast for future reading behavior
 
-# 6. Data Preparation
-Step 1: Import Libraries
-#Import required libraries
+Yesss, let’s make it clean and professional — properly formatted for **GitHub README or Jupyter Notebook (.ipynb exported to .md)**.
+
+Below is **Section 6 and 7** rewritten in clean GitHub Markdown with Python code blocks.
+
+You can copy-paste this directly into GitHub.
+
+---
+
+# 6. Data Preparation (Using Pandas)
+
+## Import Required Libraries
+
+```python
 import pandas as pd
 import numpy as np
-Step 2: Load the Dataset
-#Load dataset 
+```
+
+---
+
+## Load the Dataset
+
+```python
+# Load dataset
 df = pd.read_csv("ATP_W116_reading_data.csv")
 
-#Display first 5 rows
+# Display first 5 rows
 df.head()
-Step 3: Explore the Dataset
-#Check structure
+```
+
+---
+
+## Explore the Dataset
+
+```python
+# Check dataset structure
 df.info()
 
-#Check missing values
+# Check missing values
 df.isnull().sum()
 
-#Summary statistics
+# Summary statistics
 df.describe(include='all')
-Step 4: Data Cleaning
-#Remove duplicates
+```
+
+---
+
+## Data Cleaning
+
+```python
+# Remove duplicate rows
 df = df.drop_duplicates()
 
-#Fill missing values with 0 (for reading format columns)
+# Fill missing values in reading format columns
 df['BOOKPRINT'] = df['BOOKPRINT'].fillna(0)
 df['BOOKEBOOK'] = df['BOOKEBOOK'].fillna(0)
 df['BOOKAUDIO'] = df['BOOKAUDIO'].fillna(0)
 
-#Convert reading columns to numeric if needed
+# Convert columns to numeric format if necessary
 df['BOOKPRINT'] = pd.to_numeric(df['BOOKPRINT'], errors='coerce')
 df['BOOKEBOOK'] = pd.to_numeric(df['BOOKEBOOK'], errors='coerce')
 df['BOOKAUDIO'] = pd.to_numeric(df['BOOKAUDIO'], errors='coerce')
-Step 5: Feature Creation
+```
 
-Create a new column to classify readers:
+---
 
-#Create new column: Digital Reader (1 if uses ebook or audiobook)
+## Feature Engineering
+
+```python
+# Create Digital Reader column
 df['DIGITAL_READER'] = np.where(
     (df['BOOKEBOOK'] == 1) | (df['BOOKAUDIO'] == 1),
     1,
     0
 )
 
-#Create Print Reader column
+# Create Print Reader column
 df['PRINT_READER'] = np.where(df['BOOKPRINT'] == 1, 1, 0)
 
 df.head()
+```
+
+---
 
 # 7. Data Analysis Tasks (Using Pandas)
-- 1. How many people read print vs digital books?
+
+## Total Number of Print vs Digital Readers
+
+```python
 print_readers = df['PRINT_READER'].sum()
 digital_readers = df['DIGITAL_READER'].sum()
 
 print("Total Print Readers:", print_readers)
 print("Total Digital Readers:", digital_readers)
-- 2. Percentage of each format
+```
+
+---
+
+## Percentage Distribution
+
+```python
 total_respondents = len(df)
 
 print("Print Readers Percentage:",
@@ -103,14 +146,23 @@ print("Print Readers Percentage:",
 
 print("Digital Readers Percentage:",
       round((digital_readers / total_respondents) * 100, 2), "%")
-- 3. Reading Preference by Age Group
+```
+
+---
+
+## Reading Preference by Age Group
+
+```python
 age_analysis = df.groupby('AGE')[['PRINT_READER', 'DIGITAL_READER']].mean() * 100
 
 age_analysis
+```
 
-This shows percentage of print and digital readers in each age group.
+---
 
-- 4. Pivot Table (Education vs Digital Reading)
+## Pivot Table: Education vs Digital Reading
+
+```python
 pivot_table = pd.pivot_table(
     df,
     values='DIGITAL_READER',
@@ -119,16 +171,17 @@ pivot_table = pd.pivot_table(
 ) * 100
 
 pivot_table
+```
 
-This shows how education level affects digital reading preference.
+---
 
-- 5. Correlation Analysis
+## Correlation Between Print and Digital Reading
+
+```python
 correlation = df[['PRINT_READER', 'DIGITAL_READER']].corr()
 
 correlation
-
-If correlation is negative → digital growth may reduce print usage.
-If positive → many people use both formats.
+```
 
 # 8. Key Findings and Insights
 After analyzing the dataset using Pandas, several important observations were identified.

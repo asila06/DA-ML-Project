@@ -39,14 +39,6 @@ Expected Insights:
 - Age-based preferences
 - Forecast for future reading behavior
 
-Yesss, let’s make it clean and professional — properly formatted for **GitHub README or Jupyter Notebook (.ipynb exported to .md)**.
-
-Below is **Section 6 and 7** rewritten in clean GitHub Markdown with Python code blocks.
-
-You can copy-paste this directly into GitHub.
-
----
-
 # 6. Data Preparation (Using Pandas)
 
 ## Import Required Libraries

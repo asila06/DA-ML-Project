@@ -30,10 +30,12 @@ https://www.pewresearch.org/dataset/american-trends-panel-wave-116/
 # 5. Project Objectives
 Problem Statement:
 - Identify how reading habits are changing—paper books vs digital versions.
+  
 Key Questions:
 - How many people read paper books and digital books over the years?
 - Which age groups prefer digital books the most?
 - Is there a correlation between the growth of digital books and the decline of paper books?
+  
 Expected Insights:
 - Trends in reading habits over time
 - Age-based preferences

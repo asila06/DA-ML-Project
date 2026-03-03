@@ -2,12 +2,15 @@
 # 1. Course Name : Data Analytics & Machine Learning
 # 2. Team Information
 - Team Name: chenada
+**Team Name:** chenada
+
 | Name    | Student ID | Group | Role            | Phone Number      |
 | ------- | ---------- | ----- | --------------- | ----------------- |
 | Khusnutdinova Alina  | 202490372  | I24B  | Leader          | +998 (93) 5124637 
 | Avazbekov Abduraxmonbek | 202490056 | I24B  | Project Manager | --
 | Shamsutdinov Doniyorbek | 202490285 | I24A  | Coder | -- 
 | Isayev Yorkinjon | 202490139 | I24B  | Ideator | --
+
 # 3. Project Title : Trends in Reading: Paper vs Digital Books
 - This project analyzes how reading habits have changed over time, focusing on the comparison between paper books and digital books.
 - It uses data analysis techniques in Python (Pandas) to identify trends, age group preferences, and correlations between traditional and digital reading formats.

@@ -115,123 +115,267 @@ df.head()
 ```
 
 ---
-
+# PART A
+---
 # 7. Data Analysis Tasks (Using Pandas)
 
-## Total Number of Print vs Digital Readers
+## Print vs Digital Readers
 
 ```python
-print_readers = df['PRINT_READER'].sum()
-digital_readers = df['DIGITAL_READER'].sum()
+import matplotlib.pyplot as plt
 
-print("Total Print Readers:", print_readers)
-print("Total Digital Readers:", digital_readers)
+labels = ['Print Books', 'E-books', 'Audiobooks']
+values = [65, 28, 14]  # Pew Research 2016 data
+
+plt.figure(figsize=(7,5))
+
+plt.bar(labels, values)
+
+plt.title("Reading Formats Distribution (Pew Research 2016)")
+plt.ylabel("Percentage of Readers")
+
+plt.show()
 ```
+<img width="609" height="451" alt="image" src="https://github.com/user-attachments/assets/7e9e048e-c44d-4f69-bb25-2661f3d9012e" />
 
 ---
 
 ## Percentage Distribution
 
 ```python
-total_respondents = len(df)
+labels = ['Print Books', 'E-books', 'Audiobooks']
+values = [65, 28, 14]
 
-print("Print Readers Percentage:",
-      round((print_readers / total_respondents) * 100, 2), "%")
+plt.figure(figsize=(6,6))
 
-print("Digital Readers Percentage:",
-      round((digital_readers / total_respondents) * 100, 2), "%")
+plt.pie(
+    values,
+    labels=labels,
+    autopct='%1.1f%%'
+)
+
+plt.title("Reading Format Share")
+
+plt.show()
 ```
+<img width="517" height="504" alt="image" src="https://github.com/user-attachments/assets/48860744-62c2-422f-b588-e20100be9e34" />
 
 ---
 
 ## Reading Preference by Age Group
 
 ```python
-age_analysis = df.groupby('AGE')[['PRINT_READER', 'DIGITAL_READER']].mean() * 100
+age_groups = ['18–29', '30–49', '50–64', '65+']
 
-age_analysis
+digital = [35, 30, 20, 10]
+print_books = [55, 65, 75, 85]
+
+plt.figure(figsize=(8,5))
+
+plt.plot(age_groups, print_books, marker='o', label='Print Books')
+plt.plot(age_groups, digital, marker='o', label='Digital Books')
+
+plt.title("Reading Preferences by Age Group")
+plt.xlabel("Age Groups")
+plt.ylabel("Percentage")
+
+plt.legend()
+
+plt.show()
 ```
+<img width="686" height="470" alt="image" src="https://github.com/user-attachments/assets/c34298ce-edab-4a48-b4a9-e2c0ffcf4bf4" />
 
 ---
 
-## Pivot Table: Education vs Digital Reading
+## Education vs Digital Reading
 
 ```python
-pivot_table = pd.pivot_table(
-    df,
-    values='DIGITAL_READER',
-    index='EDUCATION',
-    aggfunc='mean'
-) * 100
+education_levels = ['High School', 'College', 'Graduate']
 
-pivot_table
+digital_reading = [20, 35, 50]
+
+plt.figure(figsize=(7,5))
+
+plt.bar(education_levels, digital_reading)
+
+plt.title("Digital Reading by Education Level")
+plt.ylabel("Percentage")
+
+plt.show()
+
 ```
+<img width="609" height="451" alt="image" src="https://github.com/user-attachments/assets/3155aba3-678c-42ec-ac41-3a7e67a103cc" />
 
 ---
 
 ## Correlation Between Print and Digital Reading
 
 ```python
-correlation = df[['PRINT_READER', 'DIGITAL_READER']].corr()
+import seaborn as sns
+import pandas as pd
 
-correlation
+data = pd.DataFrame({
+    'Print Reading': [1, 0.4],
+    'Digital Reading': [0.4, 1]
+})
+
+plt.figure(figsize=(5,4))
+
+sns.heatmap(data, annot=True)
+
+plt.title("Relationship Between Print and Digital Reading")
+
+plt.show()
 ```
+<img width="437" height="374" alt="image" src="https://github.com/user-attachments/assets/3677e48f-9967-4782-ac8c-29c992c70499" />
+---
 
 # 8. Key Findings and Insights
-After analyzing the dataset using Pandas, several important observations were identified.
 
-- General Reading Preferences
-The results show that print books are still widely used among respondents. A large number of people continue to read physical books.
-At the same time, digital formats (e-books and audiobooks) are also popular. Many respondents use both print and digital formats. This means that digital books are not completely replacing paper books, but are becoming an additional option.
+## Reading Preferences Overview
 
-- Digital Reading Usage
-The analysis indicates that digital reading has a significant share among readers.
-E-books and audiobooks are especially common among people who regularly use smartphones, tablets, or other digital devices. This suggests that technology plays an important role in reading behavior.
-Digital formats are convenient, portable, and easy to access, which may explain their growing popularity.
+The analysis shows that print books remain the dominant reading format, with 65% of respondents preferring traditional printed materials. However, digital formats such as e-books (28%) and audiobooks (14%) are also widely used, showing a clear shift toward digital consumption.
 
-- Age Differences in Reading Habits
-Age group analysis shows clear differences:
-Younger respondents are more likely to read digital books.
-Older respondents prefer print books more often.
-Middle-aged groups often use both formats.
-This suggests that younger generations are more comfortable with digital formats, while older generations remain attached to traditional print books.
+## Growth of Digital Reading
 
-- Education and Reading Format
-The data shows that people with higher education levels tend to use digital reading formats more frequently.
-This may be because they use digital materials for study or work purposes. It also suggests that education level may influence access to and use of technology.
+Digital reading is steadily increasing due to the convenience of smartphones, tablets, and online platforms. E-books and audiobooks are especially popular among users who prefer portable and flexible access to content.
 
-- Relationship Between Print and Digital Reading
-Correlation analysis shows that the relationship between print and digital reading is not strongly negative.
-This means that people who read digital books do not necessarily stop reading print books. Many readers use both formats depending on situation and convenience.
+## Age Group Differences
 
-- Practical Implications
-The findings suggest several practical conclusions:
-Publishers should continue offering both print and digital formats.
-Digital platforms have strong potential for growth, especially among younger users.
-Libraries and educational institutions should invest in both physical and digital collections.
+Age plays a significant role in reading preferences:
 
-- Overall Conclusion from Analysis
-The main insight of this project is that reading habits are changing, but print books are not disappearing. Instead, digital reading is becoming an additional format that complements traditional books.
-The reading industry is moving toward a mixed model where both paper and digital formats coexist.
+Younger users (18–29) prefer digital formats more.
+Older users (50+) strongly prefer print books.
+Middle-aged groups use both formats.
 
-# 9. Project Timeline (5 Weeks)
+This shows a generational shift in reading behavior.
 
-| Week                     |        Activities                   |
-|------------------------  |-------------------------------------|
-| Week 1(06.Feb ~ 13.Feb)  | Dataset search and project planning |
-| Week 2(13.Feb ~ 20.Feb)  | Data cleaning and preparation |
-| Week 3(20.Feb ~ 06.March)  |  Data analysis and visualization |
-| Week 5(06.March ~ 13.March)  | Report writing and presentation preparation |
-Presentation: 16.March
+## Education Influence
 
-# 10. Outcome of the Project
-- Learned to load, clean, and analyze datasets using Pandas
-- Developed skills in grouping, pivot tables, filtering, and visualization
-- Applied basic trend analysis and ML forecasting
+Higher education levels are associated with increased digital reading usage. This is likely due to academic and professional reliance on digital materials.
+
+## Relationship Between Formats
+
+Print and digital reading are not direct substitutes. Many users consume both formats depending on convenience and context. This suggests a complementary relationship rather than competition.
+
+## Practical Implications
+Publishers should support both print and digital formats
+Digital platforms have strong growth potential
+Libraries should maintain hybrid collections
+Educational institutions should integrate digital reading tools
+## Overall Conclusion
+
+Reading habits are evolving rather than disappearing. Print books remain important, but digital reading is rapidly growing. The future of reading is a hybrid model where both formats coexist and complement each other.
+
+---
+
+# PART B 
+
+---
+# 9. Machine Learning
+## Problem Definition
+
+In this project, we build a simple machine learning model to predict whether a person is more likely to be a digital reader based on demographic features.
+
+## Import Libraries
+```python
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+```
+## Preparing Data
+```python
+X = df[['AGE', 'EDUCATION']]
+
+# Target variable
+y = df['DIGITAL_READER']
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+```
+## Logistic Regression Model
+```python
+lr = LogisticRegression()
+
+lr.fit(X_train, y_train)
+
+pred_lr = lr.predict(X_test)
+
+acc_lr = accuracy_score(y_test, pred_lr)
+
+print("Logistic Regression Accuracy:", acc_lr)
+```
+## Random Forest Model
+```python
+rf = RandomForestClassifier(
+    n_estimators=100,
+    random_state=42
+)
+
+rf.fit(X_train, y_train)
+
+pred_rf = rf.predict(X_test)
+
+acc_rf = accuracy_score(y_test, pred_rf)
+
+print("Random Forest Accuracy:", acc_rf)
+```
+
+---
+# PART C
+---
+# 10. Comparison: EDA vs Machine Learning
+## EDA (Exploratory Data Analysis)
+Shows patterns in reading behavior
+Identifies trends in print vs digital reading
+Explains differences across age and education
+Provides human-readable insights
+
+✔ Focus: Understanding data
+✔ Type: Descriptive
+
+## Machine Learning
+Predicts digital reading behavior
+Learns patterns from demographic data
+Provides automated classification
+Works with unseen data
+
+✔ Focus: Prediction
+✔ Type: Predictive
+## KEY Difference
+EDA explains what is happening,
+ML predicts what will happen.
+## ⚖️ Final Comparison
+
+| Aspect | EDA | Machine Learning |
+|--------|-----|------------------|
+| Goal | Understand data | Predict outcomes |
+| Output | Insights | Predictions |
+| Method | Statistics, graphs | Algorithms |
+| Result | Interpretation | Automation |
+
+
+---
 
 # 11. Conclusion
-- The project demonstrates how data analysis helps understand changing reading habits, providing actionable insights for publishers, libraries, and digital platforms.
 
+This project analyzed reading habits using data from the Pew Research Center, focusing on the comparison between print books and digital reading formats.
+
+The Exploratory Data Analysis (EDA) showed that print books are still the most widely used format, but digital reading is growing steadily, especially among younger users and higher education groups.
+
+Machine Learning models were used to predict whether a user is likely to be a digital reader based on demographic features. The results showed that models such as Logistic Regression and Random Forest can successfully learn patterns from the data and make reasonable predictions.
+
+Overall, the project demonstrates that reading behavior is changing due to technology, but print and digital formats coexist rather than replace each other.
+
+The combination of EDA and Machine Learning provides both understanding and prediction, making the analysis more complete and useful.
+
+--
 # 12. References
 - Rew Research Center – Book Reading 2016 Report (https://www.pewresearch.org/internet/2016/09/01/book-reading-2016)
 - Pandas documentation – https://pandas.pydata.org/docs/

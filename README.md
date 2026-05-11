@@ -381,6 +381,3 @@ The combination of EDA and Machine Learning provides both understanding and pred
 - Pandas documentation – https://pandas.pydata.org/docs/
 - Matplotlib documentation – https://matplotlib.org/stable/tutorials/introductory/pyplot.html
 
-# 13. Appendix
-- Code snippets (see above)
-- Charts for trends by year and age group
